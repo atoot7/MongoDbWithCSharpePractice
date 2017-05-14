@@ -1,0 +1,83 @@
+﻿
+@{
+    //ViewBag.Title = "Find Resumes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="col-md-24 col-lg-24 col-sm-24 col-xs-24  page-header">
+        <span>Find Profiles</span>
+        <div class="btn-group pull-right">
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="form-group">
+            <label class="control-label col-sm-2 col-lg-2">Fine Profile</label>
+            <div class="col-sm-10 col-lg-4">
+                <input type="text" class="form-control" id="queryString" placeholder="Enter keyword or Name">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a id="resumesearchBtn" class="btn btn-success"><span class="fa fa-search"> Search</span></a>
+            </div>
+        </div>
+    </div>
+    @*<form id="resumelist_form" autocomplete="off" method="POST" class="form-horizontal">
+            <div id="list" class="container-fluid">
+
+                @Html.Partial("_partialFindResumes")
+            </div>
+        </form>*@
+    <hr />
+</div>
+<div id="resumelist" class="container-fluid">
+    @*@Html.Partial("_partialFindResumes")*@
+</div>
+@section Scripts
+{
+    <script>
+        $('#resumesearchBtn').click(function () {
+            var query = $('#queryString').val();
+            //alert(query);
+            $.ajax({
+                type: 'POST',
+                url: '/Resumes/FindResumes/?queryString=' + query,
+                //data: query,
+                dataType: "HTML",
+                //async: false,
+                //cache: false,
+                success: function (getData) {
+                    //alert(getData);
+                    $("#resumelist").html(getData);
+                    //alert('success');
+                    //if (getData.Status) {
+                    //    $('#activitieslist').tab('show');
+                    //    var pkgMasterId = getData.Response.PackageMasterId;
+                    //    postHtmlData('/Travel/PackageMasters//PartialAddActivity/' + pkgMasterId, 'PackageActivities-div', 'PackageActivities-form', '');
+                    //    postHtmlData('/Travel/PackageMasters//PartialActivityList/' + pkgMasterId, 'PackageActivitiesList-div', 'pkgMasterId', '');
+                    //    $('#msg-div').empty();
+                    //} else {
+                    //    $("#msg-div").html(message(getData));
+                    //}
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

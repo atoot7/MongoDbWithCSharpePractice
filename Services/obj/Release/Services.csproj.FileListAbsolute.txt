@@ -1,0 +1,12 @@
+D:\Documents\ProductionProjectCV\Services\obj\Release\Services.csprojResolveAssemblyReference.cache
+D:\Documents\ProductionProjectCV\Services\bin\Release\Services.dll.config
+D:\Documents\ProductionProjectCV\Services\bin\Release\Services.dll
+D:\Documents\ProductionProjectCV\Services\bin\Release\Services.pdb
+D:\Documents\ProductionProjectCV\Services\bin\Release\DataLayer.dll
+D:\Documents\ProductionProjectCV\Services\bin\Release\EntityFramework.dll
+D:\Documents\ProductionProjectCV\Services\bin\Release\EntityFramework.SqlServer.dll
+D:\Documents\ProductionProjectCV\Services\bin\Release\DataLayer.pdb
+D:\Documents\ProductionProjectCV\Services\bin\Release\EntityFramework.xml
+D:\Documents\ProductionProjectCV\Services\bin\Release\EntityFramework.SqlServer.xml
+D:\Documents\ProductionProjectCV\Services\obj\Release\Services.dll
+D:\Documents\ProductionProjectCV\Services\obj\Release\Services.pdb

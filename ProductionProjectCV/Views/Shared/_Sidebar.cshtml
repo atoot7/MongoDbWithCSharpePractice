@@ -1,0 +1,70 @@
+﻿@{
+    Services.Model.SessionData data = new Services.Model.SessionData();
+    data = (Services.Model.SessionData)Session["LoggedUser"];
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                @if (string.IsNullOrEmpty(data.ProfileImageName))
+            {
+                    <img src="~/Image/ResumePORTAL/user_nopic.png" class="img-circle" alt="User Image">
+                }
+                else
+                {
+                    <img src="~/Image/ResumeImages/@data.ProfileImageName" class="img-circle" alt="User Image">
+                }
+            </div>
+            <div class="pull-left info">
+               @if (string.IsNullOrEmpty(data.FullName))
+               {
+                   <p>@data.Username</p>
+               }
+               else {
+                   <p>@data.FullName</p>
+               }
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li>
+                <a href="@Url.Action("Index","MyResume")">
+                    <i class="fa fa-th"></i> <span>My Resume</span>
+                    @*<span class="pull-right-container">
+                            <small class="label pull-right bg-green">new</small>
+                        </span>*@
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("FindResumes","Resumes")">
+                    <i class="fa fa-search"></i> <span>Find Resumes</span>
+                    @*<span class="pull-right-container">
+                    <small class="label pull-right bg-green">new</small>
+                </span>*@
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Settings</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("SetVisibility","ManageProfile")"><i class="fa fa-circle-o"></i> Set Visibility</a></li>
+                    <li><a href="@Url.Action("Index","ManageProfile")"><i class="fa fa-circle-o"></i> Profile</a></li>
+                    <li><a href="@Url.Action("ChangePassword","ManageProfile")"><i class="fa fa-gear"></i> Change Password</a></li>
+                    @*<li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                        <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>*@
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

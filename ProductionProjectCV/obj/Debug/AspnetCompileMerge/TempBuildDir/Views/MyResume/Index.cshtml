@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+<!-- Small boxes (Stat box) -->
+@*<div class="row">
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </section>
+    </div>*@
+<!-- /.row -->
+<div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+        <div class="inner">
+            <p>Add Resume</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person-add"></i>
+        </div>
+        <a href="@Url.Action("Form","MyResume")" class="small-box-footer">Click Here<i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<div class="container-fluid">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    Resume Title
+                </th>
+                <th>
+                    Resume Tages
+                </th>
+                <th>
+                    Active
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.ResumeList != null) { 
+            foreach(var resume in (List<Services.Model.ResumeDetails>)ViewBag.ResumeList)
+            {
+            <tr>
+                <td>
+                    @resume.ResumeTitle
+                </td>
+                <td>
+                    @resume.ResumeTags
+                </td>
+                <td>
+                    @resume.SetActive
+                </td>
+                <td>
+                    <a class="btn-xs btn-primary" href="@Url.Action("Preview", new {@resumeId = resume._ResumeId})"><span class="fa fa-eye"> Preview</span></a>
+                </td>
+                <td>
+                    <a class="btn btn-xs btn-danger" href="@Url.Action("Delete", new {@id = resume._ResumeId})"><span class="fa fa-trash"> Delete</span></a>
+                </td>
+            </tr>
+            }}
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

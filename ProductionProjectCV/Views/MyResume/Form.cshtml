@@ -1,0 +1,461 @@
+﻿@using System.Web.UI.WebControls
+@model Services.Model.ResumeDetails
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Fill Resume Details</h2>*@
+<form class="form-horizontal" action="@Url.Action("Create","MyResume")" method="post" enctype="multipart/form-data">
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseInfo">
+                    <h3>Resume Info</h3>
+                </a>
+            </div>
+            <div id="collapseInfo" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2">Resume Title</label>
+                        <div class="col-sm-10 col-lg-4">
+                            <input type="text" class="form-control" name="ResumeTitle" placeholder="Enter title of Resume" required="required">
+                            @Html.ValidationMessage("Title")
+                        </div>
+                        <label class="control-label col-sm-2 col-lg-2" for="">Tags</label>
+                        <div class="col-sm-10 col-lg-4">
+                            <input type="text" class="form-control" name="ResumeTags" placeholder="Enter Resume Tags">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
+                    <h3>Personal Details</h3>
+                </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2">Full Name</label>
+                        <div class="col-sm-10 col-lg-10">
+                            <input type="text" class="form-control" name="FullName" placeholder="Enter Full Name" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2">DOB</label>
+                        <div class="col-sm-10 col-lg-4">
+                            <input type="text" class="form-control datepicker" name="DateOfBirth" placeholder="Enter Date Of Birth">
+                        </div>
+                        <label class="control-label col-sm-2 col-lg-2" for="">Phone/Mobile</label>
+                        <div class="col-sm-10 col-lg-4">
+                            <input type="text" class="form-control" name="Phone" placeholder="Enter Phone/Mobile Number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2" for="email">Email</label>
+                        <div class="col-sm-10 col-lg-4">
+                            <input type="email" class="form-control" name="Email" placeholder="Enter Email">
+                        </div>
+                        <label class="control-label col-sm-2 col-lg-2" for="">Website</label>
+                        <div class="col-sm-10 col-lg-4">
+                            <input type="text" class="form-control" name="Website" placeholder="Enter Website">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2" for="email">Address</label>
+                        <div class="col-sm-10 col-lg-10">
+                            @Html.TextArea("Address", new { @class = "form-control", @Name = "Address", PlaceHolder = "Enter Address" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
+                    <h3>
+                        Objective
+                    </h3>
+                </a>
+            </div>
+            <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2">Objective</label>
+                        <div class="col-sm-10 col-lg-10">
+                            @Html.TextArea("Objective", new { @class = "form-control", @Name = "Objective", PlaceHolder = "Enter Address" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
+                    <h3>
+                        Education
+                    </h3>
+                </a>
+            </div>
+            <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner" style="overflow-x: auto;">
+                    <div class="container-fluid"><a class="btn btn-xs btn-info pull-right" id="add-edu"><span class="fa fa-plus"> Add Education</span></a></div>
+                    <div class="container-fluid"><a class="btn btn-xs btn-danger pull-right" id="delete_row_edu"><span class="fa fa-plus"> Remove Education</span></a></div>
+                    <table class="table table-responsive" id="tab_edu">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Institute
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+                                <th>
+                                    From Date
+                                </th>
+                                <th>
+                                    To Date
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Active
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" name="EducationInfos[0].Title" placeholder="Title">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="EducationInfos[0].Institute" placeholder="Institute">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="EducationInfos[0].Location" placeholder="Location">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control datepicker" name="EducationInfos[0].StartDate" placeholder="Start Date">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control datepicker" name="EducationInfos[0].EndDate" placeholder="End Date">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="EducationInfos[0].Description" placeholder="Description">
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="checkbox-inline" name="EducationInfos[0].IsActive">
+                                </td>
+                            </tr>
+                            <tr id='edutr1'></tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseFour">
+                    <h3>
+                        Employment
+                    </h3>
+                </a>
+            </div>
+            <div id="collapseFour" class="accordion-body collapse">
+                <div class="accordion-inner" style="overflow-x: auto;">
+                    <div class="container-fluid"><a class="btn btn-xs btn-info pull-right" id="add-emp"><span class="fa fa-plus"> Add Job</span></a></div>
+                    <div class="container-fluid"><a class="btn btn-xs btn-danger pull-right" id="delete_row_emp"><span class="fa fa-plus"> Remove Job</span></a></div>
+                    <table class="table table-responsive" id="tab_emp">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Job Title
+                                </th>
+                                <th>
+                                    Company
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+                                <th>
+                                    From Date
+                                </th>
+                                <th>
+                                    To Date
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Active
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" name="JobHistories[0].Title" placeholder="Title">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="JobHistories[0].Company" placeholder="Company">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="JobHistories[0].Location" placeholder="Location">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control datepicker" name="JobHistories[0].StartDate datepicker" placeholder="Start Date">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control datepicker" name="JobHistories[0].EndDate" placeholder="End Date">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="JobHistories[0].Description" placeholder="Description">
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="checkbox-inline" name="JobHistories[0].IsActive">
+                                </td>
+                            </tr>
+                            <tr id='emptr1'></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseFive">
+                    <h3>
+                        Professional Skills
+                    </h3>
+                </a>
+            </div>
+            <div id="collapseFive" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="container-fluid"><a class="btn btn-xs btn-info pull-right" id="add-skill"><span class="fa fa-plus"> Add Skill</span></a></div>
+                    <div class="container-fluid"><a class="btn btn-xs btn-danger pull-right" id="delete_row_skill"><span class="fa fa-plus"> Remove skill</span></a></div>
+
+                    <div class="accordion-inner">
+                        <table class="table table-responsive" id="tab_skill">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Skill
+                                    </th>
+                                    <th>
+                                        Level
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" name="Skills[0].Name" placeholder="Enter Skill">
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("Level", DropDownServicesEnum.LevelList(), new { Name = "Skills[0].Level", id = "Skills_Id_0", @class = "form-control" })
+
+
+                                        @*<input type="text" class="form-control" name="Skills[0].Level" placeholder="Level of Skill Experience">*@
+                                    </td>
+                                </tr>
+                                <tr id='skilltr1'></tr>
+                            </tbody>
+                        </table>
+                        @*<div class="box box-success">
+                                <div class="box-header">
+                                    <div class="pull-right box-tools">
+                                        <button type="button" class="btn btn-danger btn-sm removeSkills" title="Remove">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 col-lg-2" for="email">Skill</label>
+                                        <div class="col-sm-10 col-lg-4">
+                                            <input type="text" class="form-control" name="Skills[0].Name" placeholder="Enter Institute">
+                                        </div>
+                                        <label class="control-label col-sm-2 col-lg-2" for="email">Level</label>
+                                        <div class="col-sm-10 col-lg-4">
+                                            <input type="text" class="form-control" name="Skills[0].Level" placeholder="Enter Institute">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseSix">
+                    <h3>
+                        Language Skills
+                    </h3>
+                </a>
+            </div>
+            <div id="collapseSix" class="accordion-body collapse">
+                <div class="container-fluid"><a class="btn btn-xs btn-info pull-right" id="add-language"><span class="fa fa-plus"> Add Language</span></a></div>
+                <div class="container-fluid"><a class="btn btn-xs btn-danger pull-right" id="delete_row_lan"><span class="fa fa-plus"> Remove Language</span></a></div>
+                <div class="accordion-inner">
+                    <table class="table table-responsive" id="tab_language">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Language
+                                </th>
+                                <th>
+                                    Level
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" name="Languages[0].Name" placeholder="Enter Language">
+                                </td>
+                                <td>
+                                    @Html.DropDownList("Level", DropDownServicesEnum.LevelList(), new { Name = "Languages[0].Level", id = "Languages_Id_0", @class = "form-control" })
+                                    @* <input type="text" class="form-control" name="Languages[0].Level" placeholder="Level of Language Experience">*@
+                                </td>
+                            </tr>
+                            <tr id='languagetr1'></tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <hr />
+        Resume Image: <input type="file" name="ImageFile" /><input type="checkbox" name="SetActive" />Set Active
+        <hr />
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success"><span class="fa fa-save"> Save</span></button>
+            </div>
+        </div>
+    </div>
+</form>
+<!--Tags, Image, Social Links-->
+
+@section scripts{
+    <script>
+        var LevelList = [];
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: 'dd/MM/yy'
+            }).val();
+
+            $.ajax({
+                url: "/JsonReturn/LevelList/",
+                async: false,
+                success: function (data) {
+                    LevelList = data;
+                }
+            });
+
+        })
+        var i = 1;
+        var j = 1;
+        var k = 1;
+        var l = 1;
+        $("#add-skill").click(function () {
+            var levellist = "";
+            $.each(LevelList, function (index, value) {
+                //alert(value.name+value.id);
+                levellist += "<option value='" + value.id + "'>" + value.name + "</option>";
+            });
+            $('#skilltr' + j).html(
+                "<td> <input type='text' class='form-control' name='Skills[" + j + "].Name' placeholder='Enter skill'></td>" +
+                 "<td>" +
+                 "<select class='form-control select2' name='Skills[" + i + "].Level'>" + levellist + "</select>" +
+                 "</td>"
+                 );
+            $('#tab_skill').append('<tr id="skilltr' + (parseInt(j) + 1) + '"></tr>');
+            j++;
+        });
+        $("#delete_row_skill").click(function () {
+            if (j > 1) {
+                $("#skilltr" + (j - 1)).html('');
+                j--;
+            }
+        });
+        $("#add-language").click(function () {
+            var levellist = "";
+            $.each(LevelList, function (index, value) {
+                //alert(value.name+value.id);
+                levellist += "<option value='" + value.id + "'>" + value.name + "</option>";
+            });
+
+            $('#languagetr' + i).html(
+                "<td> <input type='text' class='form-control' name='Languages[" + i + "].Name' placeholder='Enter Language'></td>" +
+                 "<td>" +
+                 "<select class='form-control select2' name='Languages[" + i + "].Level'>" + levellist + "</select>" +
+                 //"<input type='text' class='form-control' name='Languages[" + i + "].Level' placeholder='Level of Language Experience'>"+
+                 "</td>"
+                 //"<td class='col-lg-1'><button type='button' id=delete_row_lan_" + i + " class='row-button btn btn-danger btn-sm deleteRow' title=Delete Row value=Remove onClick='deleteLanguageFunction( this);'><i class='fa fa-trash'></i></button></td>"
+                 );
+            $('#tab_language').append('<tr id="languagetr' + (parseInt(i) + 1) + '"></tr>');
+            i++;
+        });
+        $("#delete_row_lan").click(function () {
+            if (i > 1) {
+                $("#languagetr" + (i - 1)).html('');
+                i--;
+            }
+        });
+
+
+        $("#add-emp").click(function () {
+            $('#emptr' + k).html(
+                "<td><input type='text' class='form-control' name='JobHistories[" + k + "].Title' placeholder='Title'></td>" +
+    "<td><input type='text' class='form-control' name='JobHistories[" + k + "].Company' placeholder='Company'></td>" +
+ "<td><input type='text' class='form-control' name='JobHistories[" + k + "].Location' placeholder='Location'></td>" +
+"<td><input type='text' class='form-control' name='JobHistories[" + k + "].StartDate' placeholder='Start Date'></td>" +
+    "<td><input type='text' class='form-control' name='JobHistories[" + k + "].EndDate' placeholder='End Date'></td>" +
+    "<td><input type='text' class='form-control' name='JobHistories[" + k + "].Description' placeholder='Description'></td>" +
+   "<td><input type='checkbox' class='checkbox-inline' name='JobHistories[" + k + "].IsActive' placeholder='Level of Skill Experience'></td>"
+                 );
+            $('#tab_emp').append('<tr id="emptr' + (parseInt(k) + 1) + '"></tr>');
+            k++;
+        });
+        $("#delete_row_emp").click(function () {
+            if (k > 1) {
+                $("#emptr" + (k - 1)).html('');
+                k--;
+            }
+        });
+
+
+
+        $("#add-edu").click(function () {
+            $('#edutr' + l).html(
+                "<td><input type='text' class='form-control' name='EducationInfos[" + l + "].Title' placeholder='Title'></td>" +
+    "<td><input type='text' class='form-control' name='EducationInfos[" + l + "].Institute' placeholder='Institute'></td>" +
+ "<td><input type='text' class='form-control' name='EducationInfos[" + l + "].Location' placeholder='Location'></td>" +
+"<td><input type='text' class='form-control' name='EducationInfos[" + l + "].StartDate' placeholder='Start Date'></td>" +
+    "<td><input type='text' class='form-control' name='EducationInfos[" + l + "].EndDate' placeholder='End Date'></td>" +
+    "<td><input type='text' class='form-control' name='EducationInfos[" + l + "].Description' placeholder='Description'></td>" +
+   "<td><input type='checkbox' class='checkbox-inline' name='EducationInfos[" + l + "].IsActive' placeholder='Level of Skill Experience'></td>"
+                 );
+            $('#tab_edu').append('<tr id="edutr' + (parseInt(l) + 1) + '"></tr>');
+            l++;
+        });
+        $("#delete_row_edu").click(function () {
+            if (l > 1) {
+                $("#edutr" + (l - 1)).html('');
+                l--;
+            }
+        });
+
+    </script>
+}

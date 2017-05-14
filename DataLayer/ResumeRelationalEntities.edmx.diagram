@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eda6a1caf0f14cf29cbb85160368f52d" Name="Diagram1">
+        <EntityTypeShape EntityType="ResumePortalDb.Education" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.Image" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.JobHistory" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.Language" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.Level" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.ProfileType" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.ResumeDetail" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.Skill" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumePortalDb.User" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="ResumePortalDb.FK_Education_ResumeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_Images_ResumeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_JobHistory_ResumeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_Languages_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_Languages_ResumeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_Skills_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_Users_ProfileTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_ResumeDetails_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumePortalDb.FK_Skills_ResumeDetails" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

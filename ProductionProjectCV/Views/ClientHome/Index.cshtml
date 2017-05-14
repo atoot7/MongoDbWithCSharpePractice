@@ -1,0 +1,251 @@
+﻿@model Services.Model.HomePageDataModel
+@{
+
+    Layout = "~/Views/Shared/_ClientHome.cshtml";
+}
+
+<div id="page">
+    <nav class="fh5co-nav" role="navigation">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <p class="num">Call: +977 9849088334</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div id="fh5co-logo"><a href="@Url.Action("Index","ClientHome")">ResumePortal<span></span></a></div>
+                    </div>
+                    <div class="col-xs-11 text-right menu-1">
+                        <ul>
+                            <li class="active"><a href="@Url.Action("Index", "ClientHome" )">Home</a></li>
+                            <li><a href="#info">Achievements</a></li>
+                            <li><a href="#progress">How to Start</a></li>
+                            <li class="btn-cta"><a href="@Url.Action("Index", "Login" )"><span>Login</span></a></li>
+                            <li class="btn-cta"><a href="@Url.Action("Index", "Register" )"><span>Create new Account</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image: url('../../Content/images/img_bg1_1.png'); " data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>Create resume and download or print!</h1>
+                            <h2> OR Just search for right resume</h2>
+                            <p><a class="btn btn-primary btn-lg btn-learn" href="@Url.Action("Index", "Login" )">Login</a> <a class="btn btn-info btn-lg" href="@Url.Action("Index", "Register" )"><i class="icon-play"></i> Sign Up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="fh5co-counter" class="fh5co-counters">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Our Achievements</h2>
+                    <p>We have helped to build and find resumes!</p>
+                </div>
+                <a style="visibility:hidden" id="info">Info</a>
+            </div>
+            <hr style="stroke: aqua" />
+            <div class="row">
+                <div class="col-md-6 text-center animate-box">
+                    <span class="fh5co-counter js-counter" data-from="0" data-to="@Model.UserCount" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="fh5co-counter-label">Users</span>
+                </div>
+                <div class="col-md-6 text-center animate-box">
+                    <span class="fh5co-counter js-counter" data-from="0" data-to="@Model.ResumeCount" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="fh5co-counter-label">Resumes</span>
+                </div>
+            </div>
+            <hr style="stroke: aqua" />
+            <div class="row">
+                @{
+                    var firstop = "Designer";
+                    var sectop = "Technician";
+                    var threetop = "CA";
+                    var fourtop = "Business Analyist";
+                }
+                @if (!string.IsNullOrEmpty(Model.FirstTopCountName))
+                {
+                    firstop = Model.FirstTopCountName;
+                }
+                @if (!string.IsNullOrEmpty(Model.FourthTopCountName))
+                {
+                    fourtop = Model.FourthTopCountName;
+                }
+                @if (!string.IsNullOrEmpty(Model.SecoundTopCountName))
+                {
+                    sectop = Model.SecoundTopCountName;
+                }
+                @if (!string.IsNullOrEmpty(Model.ThirdTopCountName))
+                {
+                    threetop = Model.ThirdTopCountName;
+                }
+                <div class="col-md-3 text-center animate-box">
+                    <span class="fh5co-counter js-counter" data-from="0" data-to="@Model.FirstTopCount" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="fh5co-counter-label">
+                       
+                        @firstop
+                    </span>
+                </div>
+
+                <div class="col-md-3 text-center animate-box">
+                    <span class="fh5co-counter js-counter" data-from="0" data-to="@Model.SecoundTopCount" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="fh5co-counter-label">
+                       @sectop
+                    </span>
+                </div>
+                <div class="col-md-3 text-center animate-box">
+                    <span class="fh5co-counter js-counter" data-from="0" data-to="@Model.ThirdTopCount" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="fh5co-counter-label">
+                      
+                        @threetop
+                    </span>
+                </div>
+                <div class="col-md-3 text-center animate-box">
+                    <span class="fh5co-counter js-counter" data-from="0" data-to="@Model.FourthTopCount" data-speed="5000" data-refresh-interval="50"></span>
+                    <spasectopn class="fh5co-counter-label">
+                       
+                        @fourtop
+                    </spasectopn>
+                </div>
+            </div>
+            <hr style="stroke: aqua" />
+        </div>
+    </div>
+
+
+
+
+
+    <div id="fh5co-steps">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2><a style="visibility:hidden" id="progress">Info</a>Build Your Resume</h2>
+                </div>
+            </div>
+
+            <div class="row bs-wizard animate-box" style="border-bottom:0;">
+
+                <div class="col-xs-3 bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 1</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center"><p>Create A Free Account</p></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step active">
+                    <!-- complete -->
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 2</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center"><p>Upload Content</p></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled">
+                    <!-- complete -->
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 3</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center"><p>Download or Print your Resume/CV</p></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled">
+                    <!-- active -->
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 4</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center"><p>Kick start your Career</p></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2><a style="visibility:hidden" id="progress">Info</a>Find Resumes</h2>
+                </div>
+            </div>
+
+            <div class="row bs-wizard animate-box" style="border-bottom:0;">
+
+                <div class="col-xs-4 bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 1</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <a href="@Url.Action("Index", "Register" )" class="bs-wizard-info text-center"><p>Create A Free Account</p></a>
+                </div>
+
+                <div class="col-xs-4 bs-wizard-step active">
+                    <!-- complete -->
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 2</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center"><p>Search Resumes</p></div>
+                </div>
+
+                <div class="col-xs-4 bs-wizard-step disabled">
+                    <!-- active -->
+                    <div class="text-center bs-wizard-stepnum"><h4>Step 4</h4></div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center"><p>Find right resume</p></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div id="fh5co-started" style="background-image:url(~/Content/images/img_bg_2.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Lets Get Started</h2>
+                    <p>Create Or Find Resumes now!</p>
+                </div>
+            </div>
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <p><a href="@Url.Action("Index", "Register" )" class="btn btn-default btn-lg">Create A Free Account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="fh5co-footer" role="contentinfo">
+        <div class="container">
+
+            <div class="row copyright">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <small class="block">&copy; Atut Gorkhali</small>
+                        <small class="block">Designed by <a href="http://atutgorkhali.com.np/" target="_blank">Atutgorkhali.com.np</a></small>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</div>

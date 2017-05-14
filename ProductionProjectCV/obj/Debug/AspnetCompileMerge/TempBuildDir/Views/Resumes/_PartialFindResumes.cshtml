@@ -1,0 +1,38 @@
+﻿@model List<Services.Model.ResumeDetails>
+@*<link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />*@
+
+    <table class="table table-striped table-responsive container-fluid">
+        <thead>
+            <tr>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    Resume Tags
+                </th>
+                <th>
+                    Education
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @item.ResumeTags
+                    </td>
+                    <td>
+                        @item.EducationInfos[0].Title
+                    </td>
+                    <td>
+                        <a class="btn-xs btn-primary" href="@Url.Action("PublicPreview", "MyResume", new {@resumeId = item._ResumeId})"><span class="fa fa-eye"> View</span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

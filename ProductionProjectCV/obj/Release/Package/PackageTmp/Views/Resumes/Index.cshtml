@@ -1,0 +1,167 @@
+﻿
+@model Services.Model.ResumeDetails
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutViewCV.cshtml";
+
+}
+<div id="main">
+    <div id="top-content">
+        <!-- Personal informations  -->
+        <div class="photo-shaddow">
+            <div class="photo-holder"><img src="~/Image/ResumeImages/@Model.Image.Name" style="width:150px" /></div>
+        </div>        
+        <h1> @Model.FullName </h1>
+        <h3>@Model.ResumeTitle</h3>
+        <p class="top-description">
+            @Model.Objective
+        </p>
+
+        <h4 class="address"> @Model.Address </h4>
+        <h4 class="phone"> @Model.Phone </h4>
+        <h4 class="mail"><a href="mailto:@Model.Email">@Model.Email </a></h4>
+        <ul class="controls">
+            <li class="save" title="Download CV"><a id="save" href="#">&nbsp;</a></li>
+            <li class="print" title="Print CV"><a id="print" href="#">&nbsp;</a></li>
+            @*<li class="view-photo" title="View Photo"><a class="fancy-box" href="~/Image/img/photo-big.png">&nbsp;</a></li>
+                <li class="mail-top" title="Contact Me"><a id="contact-me" href="#contact-div">&nbsp;</a></li>*@
+            <!-- tooltip -->
+            @*<li id="tooltip" class="inactive"><b></b></li>*@
+        </ul>
+
+    </div><!-- end of personal informations ( fixed ) -->
+    <div class="clearfix"></div>
+    <!-- Begin Midle content -->
+    <div id="middle-content">
+    @if (string.IsNullOrEmpty(Model.Image.Name)) {
+        <div class="hr">&nbsp;</div> }
+        @{
+            var jobs = Model.JobHistories.Where(x => x.Title != null);
+        }
+        <!-- Begin of Tehnical Skills -->
+        @if (jobs.Any())
+        {
+            <h2>Job History</h2>
+            <ul class="list">
+                <li class="arrow-up">&nbsp;</li>
+                @foreach (var job in Model.JobHistories)
+                {
+                    <li>
+                        <h3>
+                            @job.Title
+                        </h3> <h5>
+                            @if (@job.StartDate.GetType() == typeof(DateTime))
+                            {
+                                <s>@job.StartDate</s>
+                            }-@if (@job.EndDate.GetType() == typeof(DateTime))
+        {
+                                @job.EndDate
+        }
+        else
+        {
+            if (@job.IsActive)
+            {
+                                    <s>Current</s>
+            }
+        }
+                        </h5>
+                        <p class="description">
+                            @job.Description
+                        </p>
+                    </li>
+                }
+            </ul><!-- End of Tehnical Skills -->
+        <!-- Begin of Education -->
+        }
+        @{ 
+            var education = Model.EducationInfos.Where(x=>x.Title!=null);
+        }
+        @if (education.Any())
+        {
+            <h2>Education </h2>
+            <ul class="list">
+                <li class="arrow-up">&nbsp;</li>
+                @foreach (var edu in Model.EducationInfos)
+                {
+                    <li>
+                        <h3> @edu.Title - @edu.Institute </h3>  <h5>
+                            @if (@edu.EndDate.GetType() == typeof(DateTime))
+                            {
+                                <s>@edu.StartDate</s>
+                            } - @edu.StartDate-@if (@edu.EndDate.GetType() == typeof(DateTime))
+                            {
+                                @edu.EndDate
+                            }
+                            else
+                            {
+                                if (@edu.IsActive)
+                                {
+                                    <s>Current</s>
+                                }
+                            }
+                        </h5>
+
+                        <div class="description">
+                            @edu.Description
+                        </div>
+                    </li>}
+            </ul>
+        }
+        <!-- End of Education -->
+        <!-- Begin of Work experience -->
+
+        @{
+            var skills = Model.Skills.Where(x => x.Name != null);
+        }
+       @if (skills.Any())
+       {
+        <h2>Skills </h2>
+            <ul class="list">
+                <li class="arrow-up">&nbsp;</li>
+                @foreach (var skill in Model.Skills)
+                {
+                    <li>
+                        <h3> @skill.Name </h3>
+                        <h5> @skill.Level </h5>
+                    </li>
+                }
+            </ul>
+       }
+        @{
+            var language = Model.Languages.Where(x => x.Name != null);
+        }
+        @if (language.Any())
+        {
+            <h2>Language </h2>
+            <ul class="list">
+                <li class="arrow-up">&nbsp;</li>
+                @foreach (var lang in Model.Languages)
+                {
+                    <li>
+                        <h3> @lang.Name </h3>
+                        <h5> @lang.Level </h5>
+                    </li>
+                }
+            </ul>
+        }
+        <!-- End of Work experience -->
+        <!-- Begin of Get in touch -->
+        @*<h2 id="get_in_touch">Get in touch !</h2>
+            <ul class="list">
+                <li class="arrow-up">&nbsp;</li>
+                <li>
+                    <ul id="social">
+                        <li id="RSS" title="RSS feed"><a href="#"></a></li>
+                        <li id="facebook" title="Facebook"><a href="#"></a></li>
+                        <li id="flikr" title="Flikr"><a href="#"></a></li>
+                        <li id="twitter" title="Twitter"><a href="#"></a></li>
+                        <li id="delicios" title="Delicios"><a href="#"></a></li>
+                        <li id="digg" title="Digg"><a href="#"></a></li>
+                    </ul>
+
+                </li>
+            </ul>*@<!-- End of Get in touch -->
+    </div><!-- End of Midle content -->
+    <div id="bottom-content">&nbsp;</div>
+
+</div><!-- End of Main -->

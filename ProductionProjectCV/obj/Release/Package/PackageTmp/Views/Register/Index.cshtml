@@ -1,0 +1,101 @@
+﻿@model Services.Model.ResumeModel
+@{
+    ViewBag.Title = "Registration Page";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="/index2.html"><b>Resume</b>PORTAL</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign Up</p>
+        <form action="@Url.Action("Index","Register")" method="post">
+            <div class="form-group has-feedback">
+                @Html.TextBoxFor(m => m.PublicName, new { @class = "form-control", @Placeholder = "Public Link Name" ,@required="required"})
+            </div>
+            <div class="form-group has-feedback">
+                @Html.DropDownListFor(m => m.Category, DropDownServicesEnum.CategoryList(), new { @class = "form-control select2", @required = "required" })
+            </div>
+            <div class="form-group has-feedback">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Username/Email", @required = "required" })
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Password", @required = "required" })
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.Password("ConfirmPassword", "", new { @class = "form-control", @Placeholder = "Confirm Password", @required = "required" })
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign Up</button>
+                    @*<a href="@Url.Action("Index","Register")" class="btn btn-primary btn-block btn-flat">Sign Up</a>*@
+                </div>
+                <!-- /.col -->
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <p class="danger">@ViewBag.Message</p>
+                <p class="danger">@Html.ValidationMessageFor(m => m.Email)</p>
+                <p class="danger">@Html.ValidationMessageFor(m => m.Password)</p>
+                <!-- /.col -->
+            </div>
+        </form>
+        @*<div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                    <i class="fa fa-facebook"></i> Sign in using
+                    Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                    <i class="fa fa-google-plus"></i> Sign in using
+                    Google+
+                </a>
+            </div>*@
+        <!-- /.social-auth-links -->
+        @*<a href="#">I forgot my password</a><br>*@
+    </div>
+    <!-- /.login-box-body -->
+</div>
+
+<script type="text/javascript">
+    //function confirmPassword() {
+    //    if (!($('#ConfirmPassword').val() === $('#Password').val())){
+    //        alert("Password Doesnot Match");
+    //        return false;
+    //    }
+    //};
+    $(function () {
+        $('.select2').select2();
+    });
+    $('.select2').select2();
+    $(document).ready(function () {
+        $('.select2').select2();
+        //var value = $('#hdmessage').val();
+        //if (value != '') {
+        //    alert(value);
+        //}
+        //$('.delete').click(function () {
+        //    var row = $(this).parent().parent();
+        //    if (!confirm("Are you sure to Delete this?")) {
+        //        return false;
+        //    }
+        //    var categoryid = $(this).next().val();
+        //    var url = "DeleteCategory/";
+        //    //alert(url);
+        //    $.ajax({
+        //        url: url,
+        //        data: { id: categoryid }
+        //    }).done(function () {
+        //        row.remove();
+        //        alert("Delete Successful");
+        //    });
+        //});
+    });
+    //$('.Delete')
+</script>

@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ResumePortalDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="C_EducationId" />
+    </Key>
+    <Property Name="C_EducationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResumeId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Institute" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ResumeDetail" Relationship="Self.FK_Education_ResumeDetails" FromRole="Education" ToRole="ResumeDetails" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResumeId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ResumeDetail" Relationship="Self.FK_Images_ResumeDetails" FromRole="Images" ToRole="ResumeDetails" />
+  </EntityType>
+  <EntityType Name="JobHistory">
+    <Key>
+      <PropertyRef Name="C_HistoryId" />
+    </Key>
+    <Property Name="C_HistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ResumeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ResumeDetail" Relationship="Self.FK_JobHistory_ResumeDetails" FromRole="JobHistory" ToRole="ResumeDetails" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="LanguageId" />
+    </Key>
+    <Property Name="LanguageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LevelId" Type="Int32" />
+    <Property Name="ResumeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Level" Relationship="Self.FK_Languages_Levels" FromRole="Languages" ToRole="Levels" />
+    <NavigationProperty Name="ResumeDetail" Relationship="Self.FK_Languages_ResumeDetails" FromRole="Languages" ToRole="ResumeDetails" />
+  </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="LevelId" />
+    </Key>
+    <Property Name="LevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Languages" Relationship="Self.FK_Languages_Levels" FromRole="Levels" ToRole="Languages" />
+    <NavigationProperty Name="Skills" Relationship="Self.FK_Skills_Levels" FromRole="Levels" ToRole="Skills" />
+  </EntityType>
+  <EntityType Name="ProfileType">
+    <Key>
+      <PropertyRef Name="ProfileTypeId" />
+    </Key>
+    <Property Name="ProfileTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_ProfileTypes" FromRole="ProfileTypes" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ResumeDetail">
+    <Key>
+      <PropertyRef Name="ResumeId" />
+    </Key>
+    <Property Name="ResumeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Educations" Relationship="Self.FK_Education_ResumeDetails" FromRole="ResumeDetails" ToRole="Education" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Images_ResumeDetails" FromRole="ResumeDetails" ToRole="Images" />
+    <NavigationProperty Name="JobHistories" Relationship="Self.FK_JobHistory_ResumeDetails" FromRole="ResumeDetails" ToRole="JobHistory" />
+    <NavigationProperty Name="Languages" Relationship="Self.FK_Languages_ResumeDetails" FromRole="ResumeDetails" ToRole="Languages" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ResumeDetails_Users" FromRole="ResumeDetails" ToRole="Users" />
+    <NavigationProperty Name="Skills" Relationship="Self.FK_Skills_ResumeDetails" FromRole="ResumeDetails" ToRole="Skills" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="C_SkillsId" />
+    </Key>
+    <Property Name="C_SkillsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LevelId" Type="Int32" Nullable="false" />
+    <Property Name="ResumeId" Type="Int32" />
+    <NavigationProperty Name="Level" Relationship="Self.FK_Skills_Levels" FromRole="Skills" ToRole="Levels" />
+    <NavigationProperty Name="ResumeDetail" Relationship="Self.FK_Skills_ResumeDetails" FromRole="Skills" ToRole="ResumeDetails" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProfileTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProfileType" Relationship="Self.FK_Users_ProfileTypes" FromRole="Users" ToRole="ProfileTypes" />
+    <NavigationProperty Name="ResumeDetails" Relationship="Self.FK_ResumeDetails_Users" FromRole="Users" ToRole="ResumeDetails" />
+  </EntityType>
+  <Association Name="FK_Education_ResumeDetails">
+    <End Role="ResumeDetails" Type="Self.ResumeDetail" Multiplicity="1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeDetails">
+        <PropertyRef Name="ResumeId" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="ResumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_ResumeDetails">
+    <End Role="ResumeDetails" Type="Self.ResumeDetail" Multiplicity="0..1" />
+    <End Role="Images" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeDetails">
+        <PropertyRef Name="ResumeId" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ResumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobHistory_ResumeDetails">
+    <End Role="ResumeDetails" Type="Self.ResumeDetail" Multiplicity="1" />
+    <End Role="JobHistory" Type="Self.JobHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeDetails">
+        <PropertyRef Name="ResumeId" />
+      </Principal>
+      <Dependent Role="JobHistory">
+        <PropertyRef Name="ResumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Languages_Levels">
+    <End Role="Levels" Type="Self.Level" Multiplicity="0..1" />
+    <End Role="Languages" Type="Self.Language" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="LevelId" />
+      </Principal>
+      <Dependent Role="Languages">
+        <PropertyRef Name="LevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Languages_ResumeDetails">
+    <End Role="ResumeDetails" Type="Self.ResumeDetail" Multiplicity="1" />
+    <End Role="Languages" Type="Self.Language" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeDetails">
+        <PropertyRef Name="ResumeId" />
+      </Principal>
+      <Dependent Role="Languages">
+        <PropertyRef Name="ResumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skills_Levels">
+    <End Role="Levels" Type="Self.Level" Multiplicity="1" />
+    <End Role="Skills" Type="Self.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="LevelId" />
+      </Principal>
+      <Dependent Role="Skills">
+        <PropertyRef Name="LevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_ProfileTypes">
+    <End Role="ProfileTypes" Type="Self.ProfileType" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileTypes">
+        <PropertyRef Name="ProfileTypeId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ProfileTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeDetails_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="ResumeDetails" Type="Self.ResumeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ResumeDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skills_ResumeDetails">
+    <End Role="ResumeDetails" Type="Self.ResumeDetail" Multiplicity="0..1" />
+    <End Role="Skills" Type="Self.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeDetails">
+        <PropertyRef Name="ResumeId" />
+      </Principal>
+      <Dependent Role="Skills">
+        <PropertyRef Name="ResumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ResumePortalDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Educations" EntityType="Self.Education" />
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="JobHistories" EntityType="Self.JobHistory" />
+    <EntitySet Name="Languages" EntityType="Self.Language" />
+    <EntitySet Name="Levels" EntityType="Self.Level" />
+    <EntitySet Name="ProfileTypes" EntityType="Self.ProfileType" />
+    <EntitySet Name="ResumeDetails" EntityType="Self.ResumeDetail" />
+    <EntitySet Name="Skills" EntityType="Self.Skill" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Education_ResumeDetails" Association="Self.FK_Education_ResumeDetails">
+      <End Role="ResumeDetails" EntitySet="ResumeDetails" />
+      <End Role="Education" EntitySet="Educations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_ResumeDetails" Association="Self.FK_Images_ResumeDetails">
+      <End Role="ResumeDetails" EntitySet="ResumeDetails" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobHistory_ResumeDetails" Association="Self.FK_JobHistory_ResumeDetails">
+      <End Role="ResumeDetails" EntitySet="ResumeDetails" />
+      <End Role="JobHistory" EntitySet="JobHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Languages_Levels" Association="Self.FK_Languages_Levels">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="Languages" EntitySet="Languages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Languages_ResumeDetails" Association="Self.FK_Languages_ResumeDetails">
+      <End Role="ResumeDetails" EntitySet="ResumeDetails" />
+      <End Role="Languages" EntitySet="Languages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skills_Levels" Association="Self.FK_Skills_Levels">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="Skills" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_ProfileTypes" Association="Self.FK_Users_ProfileTypes">
+      <End Role="ProfileTypes" EntitySet="ProfileTypes" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeDetails_Users" Association="Self.FK_ResumeDetails_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ResumeDetails" EntitySet="ResumeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skills_ResumeDetails" Association="Self.FK_Skills_ResumeDetails">
+      <End Role="ResumeDetails" EntitySet="ResumeDetails" />
+      <End Role="Skills" EntitySet="Skills" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

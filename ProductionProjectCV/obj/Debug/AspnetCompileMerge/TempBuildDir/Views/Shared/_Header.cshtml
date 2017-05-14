@@ -1,0 +1,73 @@
+﻿@{
+    Services.Model.SessionData data = new Services.Model.SessionData();
+    data = (Services.Model.SessionData)Session["LoggedUser"];
+}
+<header class="main-header">
+    <!-- Logo -->
+    <a href="@Url.Action("Index","Home")" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>CV</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Resume</b>PORTAL</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Messages: style can be found in dropdown.less-->
+                <!-- Notifications: style can be found in dropdown.less -->
+
+
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-gears"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            @if (string.IsNullOrEmpty(data.ProfileImageName))
+            {
+                                <img src="~/Image/ResumePORTAL/user_nopic.png" class="img-circle" alt="User Image">
+                            }
+                            else
+                            {
+                                <img src="~/Image/ResumeImages/@data.ProfileImageName" class="img-circle" alt="User Image">
+                            }
+
+                            <p>
+                                @if (string.IsNullOrEmpty(data.FullName))
+                                {
+                                <p>@data.Username</p>
+                                }
+                                else
+                                {
+                                    <p>@data.FullName</p>
+                                }
+                                @*<small>Member since Nov. 2012</small>*@
+                                </p>
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="@Url.Action("Index","ManageProfile")" class="btn btn-default btn-flat">Manage Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="@Url.Action("LogOff","Login")" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    @*<li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>*@
+                </ul>
+            </div>
+        </nav>
+    </header>
